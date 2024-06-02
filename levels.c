@@ -194,7 +194,7 @@ void create_userpack (void)
 	#elif defined(PLATFORM_PC) || defined(PLATFORM_ZAURUS) || defined(PLATFORM_FREMANTLE)
 		strcpy (fullpath, getenv ("HOME"));
 		strcat (fullpath, "/" LOCAL_DATA_DIR "/" LEVELS_DIR "/" DEFAULT_USER_LEVEL_PACK);
-	#elif defined(PLATFORM_GP2X) || defined(PLATFORM_PSP)
+	#elif defined(PLATFORM_GP2X) || defined(PLATFORM_PSP) || defined(PLATFORM_MIYOO)
 		strcpy (fullpath, PACKAGE_DATA_DIR "/" LEVELS_DIR "/" DEFAULT_USER_LEVEL_PACK);
 	#endif
 	
@@ -301,7 +301,7 @@ find_all_dat_files (void)
 		for (count = 0; count < 1; count++)
 	#elif defined(PLATFORM_PC) || defined(PLATFORM_ZAURUS) || defined(PLATFORM_FREMANTLE)
 		for (count = 0; count < 2; count++)
-	#elif defined(PLATFORM_GP2X) || defined(PLATFORM_PSP)
+	#elif defined(PLATFORM_GP2X) || defined(PLATFORM_PSP) || defined(PLATFORM_MIYOO)
 		for (count = 0; count < 1; count++)
 	#endif
 	{
@@ -317,6 +317,7 @@ find_all_dat_files (void)
 				strcat (foldername, "/" LOCAL_DATA_DIR "/" LEVELS_DIR);
 			#elif defined(PLATFORM_GP2X)
 			#elif defined(PLATFORM_PSP)
+			#elif defined(PLATFORM_MIYOO)
 			#endif
 		}
 

@@ -342,6 +342,10 @@ void load_selected_locale (void)
 		strcpy (config_items[++row].name, "[txt_intro_keys_PLATFORM_PSP]");
 		config_items[row].destination = txt_intro_keys;
 		config_items[row].max_rows = TXT_INTRO_KEYS_ROWS;
+	#elif defined(PLATFORM_MIYOO)
+		strcpy (config_items[++row].name, "[txt_intro_keys_PLATFORM_MIYOO]");
+		config_items[row].destination = txt_intro_keys;
+		config_items[row].max_rows = TXT_INTRO_KEYS_ROWS;
 	#endif
 	strcpy (config_items[++row].name, "[txt_intro_keys_description]");
 	config_items[row].destination = txt_intro_keys_description;

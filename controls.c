@@ -81,6 +81,24 @@
 #define PSP_HOME 12
 #define PSP_HOLD 13
 
+/* Miyoo Mini+ button IDs */
+#define MIYOO_UP SDLK_UP
+#define MIYOO_DOWN SDLK_DOWN
+#define MIYOO_LEFT SDLK_LEFT
+#define MIYOO_RIGHT SDLK_RIGHT
+#define MIYOO_A SDLK_SPACE
+#define MIYOO_B SDLK_LCTRL
+#define MIYOO_X SDLK_LSHIFT
+#define MIYOO_Y SDLK_LALT
+#define MIYOO_L1 SDLK_e
+#define MIYOO_R1 SDLK_t
+#define MIYOO_L2 SDLK_TAB
+#define MIYOO_R2 SDLK_BACKSPACE
+#define MIYOO_SELECT SDLK_RCTRL
+#define MIYOO_START SDLK_RETURN
+#define MIYOO_MENU SDLK_ESCAPE
+#define MIYOO_POWER SDLK_FIRST
+
 /* Variables */
 SDL_Event event;
 
@@ -573,6 +591,8 @@ void set_default_user_controls (struct control user_controls[USER_CONTROLS])
 			user_controls[count].device = DEVICE_KEYBOARD;
 		#elif defined(PLATFORM_PSP)
 			user_controls[count].device = DEVICE_JOYSTICK;
+		#elif defined(PLATFORM_MIYOO)
+			user_controls[count].device = DEVICE_KEYBOARD;
 		#endif
 		user_controls[count].id = UNDEFINED;
 		user_controls[count].mod = UNDEFINED;
@@ -822,6 +842,48 @@ void set_default_user_controls (struct control user_controls[USER_CONTROLS])
 		user_controls[ACTION_SCROLL_DOWN].device = UNDEFINED;
 		user_controls[ACTION_PRIMARY_CLICK].device = UNDEFINED;
 		user_controls[ACTION_NOT_USED1].device = UNDEFINED;
+	#elif defined(PLATFORM_MIYOO)
+		user_controls[ACTION_UP].id = MIYOO_UP;
+		user_controls[ACTION_UP_RIGHT].device = UNDEFINED;
+		user_controls[ACTION_RIGHT].id = MIYOO_RIGHT;
+		user_controls[ACTION_DOWN_RIGHT].device = UNDEFINED;
+		user_controls[ACTION_DOWN].id = MIYOO_DOWN;
+		user_controls[ACTION_DOWN_LEFT].device = UNDEFINED;
+		user_controls[ACTION_LEFT].id = MIYOO_LEFT;
+		user_controls[ACTION_UP_LEFT].device = UNDEFINED;
+		user_controls[ACTION_RESTART].id = MIYOO_START;
+		user_controls[ACTION_SHOOT_UP].id = MIYOO_UP;
+		user_controls[ACTION_SHOOT_UP].mod = ACTION_MODIFIER1;
+		user_controls[ACTION_SHOOT_DOWN].id = MIYOO_DOWN;
+		user_controls[ACTION_SHOOT_DOWN].mod = ACTION_MODIFIER1;
+		user_controls[ACTION_SHOOT_LEFT].id = MIYOO_LEFT;
+		user_controls[ACTION_SHOOT_LEFT].mod = ACTION_MODIFIER1;
+		user_controls[ACTION_SHOOT_RIGHT].id = MIYOO_RIGHT;
+		user_controls[ACTION_SHOOT_RIGHT].mod = ACTION_MODIFIER1;
+		user_controls[ACTION_SELECT].id = MIYOO_A;
+		user_controls[ACTION_EXIT].id = MIYOO_MENU;
+		user_controls[ACTION_HELP].device = UNDEFINED;
+		user_controls[ACTION_OPTIONS].device = UNDEFINED;
+		user_controls[ACTION_TOGGLE_FULLSCREEN].device = UNDEFINED;
+		user_controls[ACTION_PREVIOUS_LEVEL].id = MIYOO_L2;
+		user_controls[ACTION_NEXT_LEVEL].id = MIYOO_R2;
+		user_controls[ACTION_PREVIOUS_PACK].device = UNDEFINED;
+		user_controls[ACTION_NEXT_PACK].device = UNDEFINED;
+		user_controls[ACTION_HOME].device = UNDEFINED;
+		user_controls[ACTION_END].device = UNDEFINED;
+		user_controls[ACTION_PAGEUP].device = UNDEFINED;
+		user_controls[ACTION_PAGEDOWN].device = UNDEFINED;
+		user_controls[ACTION_TOGGLE_DESIGNER].device = UNDEFINED;
+		user_controls[ACTION_VOLUP].device = UNDEFINED;
+		user_controls[ACTION_VOLDOWN].device = UNDEFINED;
+		user_controls[ACTION_MODIFIER1].id = MIYOO_A;
+		user_controls[ACTION_MODIFIER2].device = UNDEFINED;
+		user_controls[ACTION_MODIFIER3].device = UNDEFINED;
+		user_controls[ACTION_MODIFIER4].device = UNDEFINED;
+		user_controls[ACTION_SCROLL_UP].device = UNDEFINED;
+		user_controls[ACTION_SCROLL_DOWN].device = UNDEFINED;
+		user_controls[ACTION_PRIMARY_CLICK].device = UNDEFINED;
+		user_controls[ACTION_NOT_USED1].device = UNDEFINED;
 	#endif
 }
 
@@ -885,6 +947,9 @@ int initialise_joystick (int joyid, char *joyname, int show)
 			if (joystick)
 			{
 		#elif defined(PLATFORM_PSP)
+			if (joystick)
+			{
+		#elif defined(PLATFORM_MIYOO)
 			if (joystick)
 			{
 		#endif

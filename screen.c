@@ -20,6 +20,10 @@
 
 #include "game.h"
 
+#ifdef PLATFORM_MIYOO
+#include "gfx.h"
+#endif
+
 /* Defines */
 /*
 #define DEBUG_VIDEO
@@ -1243,6 +1247,7 @@ set_video_mode (void)
   video.xres = 320; video.yres = 240; video.field_size = 16;
 #elif defined(PLATFORM_ZAURUS)
 #elif defined(PLATFORM_PSP)
+#elif defined(PLATFORM_MIYOO)
 #endif
 
   /* Validate fullscreen that the user may have requested */
@@ -1257,6 +1262,8 @@ set_video_mode (void)
 #elif defined(PLATFORM_FREMANTLE)
   video.fullscreen = SDL_FULLSCREEN;
 #elif defined(PLATFORM_PSP)
+  video.fullscreen = SDL_FULLSCREEN;
+#elif defined(PLATFORM_MIYOO)
   video.fullscreen = SDL_FULLSCREEN;
 #endif
 
@@ -1362,6 +1369,7 @@ set_video_mode (void)
     hwsurface[count] = SDL_SWSURFACE;
 #elif defined(PLATFORM_ZAURUS)
 #elif defined(PLATFORM_PSP)
+#elif defined(PLATFORM_MIYOO)
 #endif
 
   /* First attempt to set the user requested mode, then hi-res, then lo-res, then quit */
@@ -1406,7 +1414,12 @@ set_video_mode (void)
 	}
 
       /* We have enough info to set the correct mode now */
-      screen = SDL_SetVideoMode (video.xres, video.yres, 16, flags);
+      #if defined(PLATFORM_MIYOO)
+          GFX_Init();
+	  screen = GFX_CreateRGBSurface(0, 640, 480, 16, 0, 0, 0, 0);
+      #else
+	  screen = SDL_SetVideoMode (video.xres, video.yres, 16, flags);
+      #endif
       if (screen != NULL)
 	{
 	  break;
@@ -3052,6 +3065,8 @@ void show_optionsscreen (void)
 			options[OPTIONS_ACTION_TOGGLE_FULLSCREEN] = FALSE;
 		#elif defined(PLATFORM_PSP)
 			options[OPTIONS_ACTION_TOGGLE_FULLSCREEN] = FALSE;
+		#elif defined(PLATFORM_MIYOO)
+			options[OPTIONS_ACTION_TOGGLE_FULLSCREEN] = FALSE;
 		#endif
 
 		/* Disable pointer options on platforms that don't support the mouse */
@@ -3068,6 +3083,12 @@ void show_optionsscreen (void)
 			#endif
 		#elif defined(PLATFORM_ZAURUS)
 		#elif defined(PLATFORM_PSP)
+			options[OPTIONS_ACTION_SCROLL_UP] = FALSE;
+			options[OPTIONS_ACTION_SCROLL_DOWN] = FALSE;
+			options[OPTIONS_ACTION_PRIMARY_CLICK] = FALSE;
+			options[OPTIONS_SYSTEM_POINTER] = FALSE;
+			options[OPTIONS_POINTER_CONTROLS_PAD_TYPE] = FALSE;
+		#elif defined(PLATFORM_MIYOO)
 			options[OPTIONS_ACTION_SCROLL_UP] = FALSE;
 			options[OPTIONS_ACTION_SCROLL_DOWN] = FALSE;
 			options[OPTIONS_ACTION_PRIMARY_CLICK] = FALSE;

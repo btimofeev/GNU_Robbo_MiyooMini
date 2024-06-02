@@ -30,6 +30,10 @@ PSP_MAIN_THREAD_ATTR (0);
 PSP_MAIN_THREAD_STACK_SIZE_KB (2 * 1024);
 #endif
 
+#ifdef PLATFORM_MIYOO
+#include "gfx.h"
+#endif
+
 /* Defines */
 /*
 #define DEBUG_MAIN
@@ -189,6 +193,8 @@ main (int argc, char *argv[])
 #elif defined(PLATFORM_FREMANTLE)
   gnurobbo_op_env.systempointer = FALSE;
 #elif defined(PLATFORM_PSP)
+  gnurobbo_op_env.systempointer = FALSE;
+#elif defined(PLATFORM_MIYOO)
   gnurobbo_op_env.systempointer = FALSE;
 #endif
   gnurobbo_op_env.pointer = FALSE;
@@ -367,6 +373,8 @@ main (int argc, char *argv[])
 		strcat (path_resource_file, "/MyDocs/.gnurobbo/");
 	#elif defined(PLATFORM_PSP)
 		strcpy (path_resource_file, "./");
+	#elif defined(PLATFORM_MIYOO)
+		strcpy (path_resource_file, "./");
 	#endif
 	strcat (path_resource_file, RESOURCE_FILE);
 	printf ("RESOURCE_FILE is %s\n", path_resource_file);
@@ -475,6 +483,7 @@ main (int argc, char *argv[])
 #elif defined(PLATFORM_GP2X)
 #elif defined(PLATFORM_ZAURUS)
 #elif defined(PLATFORM_PSP)
+#elif defined(PLATFORM_MIYOO)
 #endif
 
   /* Set the video mode */
@@ -1553,6 +1562,9 @@ main (int argc, char *argv[])
       show_message_box (MESSAGE_BOX_SUB_SHOW, NULL);
 
       /* Update the screen */
+      #if defined(PLATFORM_MIYOO)
+      GFX_Flip(screen);
+      #endif
       SDL_Flip (screen);
 
       /* I think I should explain how the timing works as people may think I'm simply calling SDL_Delay(10)
@@ -1595,6 +1607,7 @@ main (int argc, char *argv[])
   return 0;
 }
 
+
 /***************************************************************************
  * Clean Up Before Exit                                                    *
  ***************************************************************************/
@@ -1621,6 +1634,9 @@ clean_up_before_exit (void)
   if (joystick)
     SDL_JoystickClose (joystick);
 #elif defined(PLATFORM_PSP)
+  if (joystick)
+    SDL_JoystickClose (joystick);
+#elif defined(PLATFORM_MIYOO)
   if (joystick)
     SDL_JoystickClose (joystick);
 #endif
@@ -1651,6 +1667,9 @@ clean_up_before_exit (void)
   audio_destroy ();
 
   TTF_Quit ();
+  #ifdef PLATFORM_MIYOO
+  GFX_Quit();
+  #endif
   SDL_Quit ();
 }
 
@@ -2197,6 +2216,7 @@ manage_options_select (int optionid)
 	      system ("sync");
 #elif defined(PLATFORM_ZAURUS)
 #elif defined(PLATFORM_PSP)
+#elif defined(PLATFORM_MIYOO)
 #endif
 	    }
 	  /* Some of the above will require the entire page to be redrawn so always redraw everything on save */
