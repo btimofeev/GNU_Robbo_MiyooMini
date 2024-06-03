@@ -6,7 +6,6 @@ SOURCES=$(wildcard *.c)
 OBJECTS=$(patsubst %.c, %.o, $(SOURCES))
 VERSION=$(shell cat VERSION)
 export PACKAGE_DATA_DIR=./data
-export TOOLCHAIN=gp2x
 
 # Comment out the line below if you want to disable music support
 MUSIC=-DHAVE_MUSIC
@@ -24,7 +23,7 @@ SDL_CONFIG := $(DEVPREFIX)/usr/bin/sdl-config
 CFLAGS=-O3 -pipe -Wall -fomit-frame-pointer \
 	-I$(DEVPREFIX)/usr/include `$(SDL_CONFIG) --prefix=$(DEVPREFIX) --cflags` \
 	-DPLATFORM_MIYOO -DVERSION=\"$(VERSION)\" -DPACKAGE_DATA_DIR=\"$(PACKAGE_DATA_DIR)\" \
-	$(FONT_USE_PIXMAP) $(MUSIC) $(DESIGNER) -DDEBUG_VIDEO
+	$(FONT_USE_PIXMAP) $(MUSIC) $(DESIGNER)
 LINK=$(CC)
 LDFLAGS=-L$(DEVPREFIX)/usr/lib 
 LIBS=`$(SDL_CONFIG) --prefix=$(DEVPREFIX) --libs` $(FONT_USE_SDL_TTF) -lSDL_image -lSDL_mixer -lm -lpthread -lmi_sys -lmi_gfx
@@ -34,7 +33,6 @@ all: $(SOURCES) $(TARGET)
 
 $(TARGET): $(OBJECTS)
 	$(LINK) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@
-###	gp2x/build-$(TARGET)
 
 %.o: %.c 
 	$(CC) $(CFLAGS) -c $< -o $@

@@ -708,8 +708,12 @@ audio_open()
 	    ("audio_rate=%i audio_format=%i audio_channels=%i audio_buffers=%i\n",
 	     audio_rate, audio_format, audio_channels, audio_buffers);
 #endif
+#if defined(PLATFORM_MIYOO)
+	if (Mix_OpenAudio (48000, 32784, 2, 4096) != 0) {
+#else
 	if (Mix_OpenAudio (audio_rate, audio_format, audio_channels, audio_buffers) != 0) {		/* it seems we will not have the sound
 															 * after all */
+#endif
 	    fprintf(stderr, "Unable to initialize audio: %s\n", Mix_GetError());
 	    sound = 0;
 	} else {

@@ -2,50 +2,50 @@ this is a skin
 which should be read
 
 [screw]
-default/screw.ogg
+default/screw.wav
 
 [ammo]
-default/ammo.ogg
+default/ammo.wav
 
 [bomb]
-default/bomb.ogg
+default/bomb.wav
 
 [capsule]
-default/capsule.ogg
+default/capsule.wav
 
 [exit-open]
-default/capsule.ogg
+default/capsule.wav
 
 [gun]
-oily/gun.ogg
+oily/gun.wav
 
 [kill]
-default/kill.ogg
+default/kill.wav
 
 [walk]
-oily/walk.ogg
+oily/walk.wav
 
 [bird]
-default/bird.ogg
+default/bird.wav
 
 [box]
-default/box.ogg
+default/box.wav
 
 [door]
-oily/door.ogg
+oily/door.wav
 
 [capsule]
-oily/end.ogg
+oily/end.wav
 
 [key]
-default/key.ogg
+default/key.wav
 
 [magnet]
-default/magnet.ogg
+default/magnet.wav
 
 [robbo-shoots]
-oily/shoot.ogg
+oily/shoot.wav
 
 [teleport]
-default/teleport.ogg
+default/teleport.wav
 

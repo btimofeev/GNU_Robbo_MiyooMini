@@ -2,49 +2,49 @@ This is default sound skin,
 used when custom sound skin is missing
 
 [screw]
-default/screw.ogg
+default/screw.wav
 
 [ammo]
-default/ammo.ogg
+default/ammo.wav
 
 [bomb]
-default/bomb.ogg
+default/bomb.wav
 
 [capsule]
-default/capsule.ogg
+default/capsule.wav
 
 [exit-open]
-default/capsule.ogg
+default/capsule.wav
 
 [gun]
-default/gun_default.ogg
+default/gun_default.wav
 
 [kill]
-default/kill.ogg
+default/kill.wav
 
 [walk]
-default/walk_default.ogg
+default/walk_default.wav
 
 [bird]
-default/bird.ogg
+default/bird.wav
 
 [box]
-default/box.ogg
+default/box.wav
 
 [door]
-default/door_default.ogg
+default/door_default.wav
 
 [capsule]
-default/end_default.ogg
+default/end_default.wav
 
 [key]
-default/key.ogg
+default/key.wav
 
 [magnet]
-default/magnet.ogg
+default/magnet.wav
 
 [robbo-shoots]
-default/shoot_default.ogg
+default/shoot_default.wav
 
 [teleport]
-default/teleport.ogg
+default/teleport.wav
